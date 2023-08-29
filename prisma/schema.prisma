@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  firstName String?
+  lastName  String?
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  roleId    String
+  avatarUrl String?
+  role      Role     @relation(fields: [roleId], references: [id])
+  order     Order[]
+}
+
+model Role {
+  id    String @id @default(cuid())
+  title String @unique
+  user  User[]
+}
+
+model Product {
+  id           String  @id @default(cuid())
+  name         String  @unique
+  average      Float   @default(0.0)
+  currentPrice Float   @default(0.0)
+  unitId       String
+  quantity     Float   @default(0.0)
+  order        Order[]
+  price        Price[]
+  units        Unit    @relation(fields: [unitId], references: [id])
+  type         Type @default(OTHER)
+}
+
+enum Type {
+  KITCHEN
+  OTHER
+}
+
+model Unit {
+  id      String    @id @default(cuid())
+  title   String    @unique
+  ua String
+  ru String
+  en String
+  pl String
+  product Product[]
+  order   Order[]
+}
+
+model Price {
+  id          String   @id @default(cuid())
+  amount      Float
+  productId   String
+  dateCreated DateTime @db.Date @default(now())
+  product     Product  @relation(fields: [productId], references: [id])
+}
+
+model Order {
+  id        String   @id @default(cuid())
+  title     String
+  unitId    String
+  amount    Float
+  productId String
+  applicantId String
+  ordered   Boolean @default(false)
+  done      Boolean @default(false)
+  pending   Boolean @default(false)
+  doneAmount Float @default(0.0)
+  applicant User     @relation(fields: [applicantId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  units     Unit     @relation(fields: [unitId], references: [id])
+  createdAt DateTime @default(now()) @db.Date
+  doneAt    String?
+  orderedAt String?
+}
+
+

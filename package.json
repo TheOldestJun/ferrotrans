@@ -1,5 +1,5 @@
 {
-  "name": "ferrotrans",
+  "name": "supply-chain-management",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,10 +9,29 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "eslint": "8.48.0",
-    "eslint-config-next": "13.4.19",
-    "next": "13.4.19",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@formkit/auto-animate": "^0.7.0",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/joy": "^5.0.0-beta.1",
+    "@mui/lab": "^5.0.0-alpha.139",
+    "@mui/material": "^5.14.4",
+    "@prisma/client": "^5.1.1",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@welldone-software/why-did-you-render": "^7.0.1",
+    "axios": "^1.4.0",
+    "eslint": "8.46.0",
+    "eslint-config-next": "13.4.13",
+    "moment": "^2.29.4",
+    "next": "13.4.13",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hot-toast": "^2.4.1",
+    "react-query": "^3.39.3",
+    "react-redux": "^8.1.2"
+  },
+  "devDependencies": {
+    "babel-plugin-import": "^1.13.8",
+    "prisma": "^5.1.1"
   }
 }
