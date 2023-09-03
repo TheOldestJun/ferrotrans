@@ -33,20 +33,6 @@ export default function Home() {
           alignItems: "center",
         }}
       >
-        <Box
-          component="div"
-          sx={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            backgroundImage: `url(${imgUrl})`,
-            backgroundPosition: "center",
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            opacity: "0.3",
-            zIndex: "-100",
-          }}
-        />
         {lang && <Login lang={lang} />}
       </Container>
     </>
