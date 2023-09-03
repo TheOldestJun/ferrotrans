@@ -16,11 +16,7 @@ import { useState } from "react";
 import Login from "@/components/Login";
 
 export default function Home() {
-  const imgUrl = "/logo_transparent.png";
-  const login = useSelector((state) => state.login.login);
   const lang = useSelector((state) => state.lang.lang);
-  const userRole = useSelector((state) => state.login.role);
-  const dispatch = useDispatch();
   return (
     <>
       {!lang && <LangOptions />}
