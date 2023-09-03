@@ -11,7 +11,7 @@ import Layout from "@/components/layout/Layout";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false,
+      refetchOnWindowFocus: true,
     },
   },
 });

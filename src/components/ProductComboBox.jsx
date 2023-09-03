@@ -25,7 +25,6 @@ import toast from "react-hot-toast";
 const filter = createFilterOptions();
 
 const ProductComboBox = ({ data, units, type, lang }) => {
-  console.log(type);
   const queryClient = useQueryClient();
   const userId = useSelector((state) => state.login.userId);
   const { mutate: addProduct } = useMutation({
@@ -36,7 +35,7 @@ const ProductComboBox = ({ data, units, type, lang }) => {
       toast.success(toastLocals[lang].successProduct);
     },
     onError: () => {
-      toast.error(toastLocals[lang].errorProduct);
+      toast.error(toastLocals[lang].error);
     },
   });
 

@@ -38,6 +38,9 @@ const OrderCardButtons = ({
         productType={productType}
       />
       <NotSupplyButtons
+        ordered={ordered}
+        done={done}
+        pending={pending}
         disabled={role === "supply" ? true : false}
         onDelete={onDelete}
         onEditAmount={onEditAmount}

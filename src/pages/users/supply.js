@@ -16,16 +16,19 @@ import { useState } from "react";
 import supply from "@/localization/supply";
 import prisma from "../../../prisma";
 import SupplyTable from "@/components/SupplyTable";
+import Oops from "@/components/Oops";
 
 const Supply = ({ appsNames }) => {
   const lang = useSelector((state) => state.lang.lang);
   const userRole = useSelector((state) => state.login.role);
-
+  const login = useSelector((state) => state.login.login);
   const [orderTable, showOrdersTable] = useState(false);
   const [tab, setTab] = useState("1");
   const [applicantId, setApplicantId] = useState("");
   const [applicantRole, setApplicantRole] = useState("");
-
+  if (!login) {
+    return <Oops />;
+  }
   const cards = appsNames.map((app) => {
     return (
       <Grid item xs={12} sm={6} md={4} lg={3} key={app.id}>
@@ -64,8 +67,7 @@ const Supply = ({ appsNames }) => {
               setTab(value);
             }}
           >
-            <Tab label="Заявки" value="1" />
-            <Tab label="Выполнение" value="2" />
+            <Tab label={supply[lang].order} value="1" />
           </TabList>
         </Box>
         <TabPanel value="1">
@@ -93,7 +95,6 @@ const Supply = ({ appsNames }) => {
             </Grid>
           )}
         </TabPanel>
-        <TabPanel value="2">Dones</TabPanel>
       </TabContext>
     </Container>
   );

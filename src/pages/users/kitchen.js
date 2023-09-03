@@ -3,6 +3,7 @@ import { getAllKitchen } from "../../services/product";
 import { getAllByUserId } from "@/services/orders";
 import ProductComboBox from "@/components/ProductComboBox";
 import OrderTable from "@/components/OrderTable";
+import DebitTable from "@/components/DebitTable";
 import prisma from "../../../prisma";
 import Info from "@/components/Info";
 import main from "@/localization/main";
@@ -23,8 +24,10 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { Type } from "@prisma/client";
+import Oops from "@/components/Oops";
 
 const Kitchen = ({ units, prods }) => {
+  const login = useSelector((state) => state.login.login);
   const lang = useSelector((state) => state.lang.lang);
   const userId = useSelector((state) => state.login.userId);
   const userRole = useSelector((state) => state.login.role);
@@ -45,7 +48,9 @@ const Kitchen = ({ units, prods }) => {
     queryKey: ["orders", userId],
     queryFn: () => getAllByUserId(userId),
   });
-
+  if (!login) {
+    return <Oops />;
+  }
   const productTable = prods.map((product) => {
     if (product.quantity > 0) {
       return (
@@ -77,9 +82,10 @@ const Kitchen = ({ units, prods }) => {
               setTab(value);
             }}
           >
-            <Tab label={kitchen[lang]["createOrder"]} value="1" />
-            <Tab label={kitchen[lang]["myOrders"]} value="2" />
-            <Tab label={kitchen[lang]["allProducts"]} value="3" />
+            <Tab label={kitchen[lang].createOrder} value="1" />
+            <Tab label={kitchen[lang].myOrders} value="2" />
+            <Tab label={kitchen[lang].allProducts} value="3" />
+            <Tab label={kitchen[lang].debit} value="4" />
           </TabList>
         </Box>
         <TabPanel value="1">
@@ -129,6 +135,9 @@ const Kitchen = ({ units, prods }) => {
               <TableBody>{productTable}</TableBody>
             </Table>
           </TableContainer>
+        </TabPanel>
+        <TabPanel value="4">
+          <DebitTable data={products} lang={lang} />
         </TabPanel>
       </TabContext>
     </Container>

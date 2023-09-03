@@ -7,7 +7,10 @@ const kitchen = {
     currentPrice: "Текущая цена",
     averagePrice: "Усредненная цена",
     quantity: "Текущее количество",
+    amount: "Количество",
     units: "Единицы измерения",
+    debit: "Списание",
+    debitQuestion: "Количество для списания",
   },
   en: {
     createOrder: "Create order",
@@ -17,7 +20,10 @@ const kitchen = {
     currentPrice: "Current price",
     averagePrice: "Average price",
     quantity: "Current quantity",
+    amount: "Amount",
     units: "Units of measure",
+    debit: "Debit",
+    debitQuestion: "Amount to debit",
   },
   ua: {
     createOrder: "Створити замовлення",
@@ -27,7 +33,10 @@ const kitchen = {
     currentPrice: "Поточна ціна",
     averagePrice: "Середня ціна",
     quantity: "Наявна кількість",
+    amount: "Кількість",
     units: "Одиниці виміру",
+    debit: "Списання",
+    debitQuestion: "Кількість для списання",
   },
   pl: {
     createOrder: "Stwórz zamówienie",
@@ -37,7 +46,10 @@ const kitchen = {
     currentPrice: "Aktualna cena",
     averagePrice: "Średnia cena",
     quantity: "Aktualna ilość",
+    amount: "Ilość",
     units: "Jednostki",
+    debit: "Spłata",
+    debitQuestion: "Ilość do spłaty",
   },
 };
 

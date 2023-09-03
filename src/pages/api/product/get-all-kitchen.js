@@ -14,6 +14,9 @@ const GetAllKitchen = async (req, res) => {
         id: true,
         name: true,
         unitId: true,
+        average: true,
+        currentPrice: true,
+        quantity: true,
         units: {
           select: {
             ua: true,

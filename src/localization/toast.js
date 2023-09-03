@@ -1,7 +1,9 @@
 const toastLocals = {
   ru: {
     error: "Что-то пошло не так :(",
+    success: "Готово",
     successProduct: "Продукт успешно создан",
+    successProductUpdate: "Продукт успешно обновлен",
     successOrder: "Заявка успешно создана",
     removeOrder: "Заявка успешно удалена",
     updateAmount: "Количество успешно изменено",
@@ -10,7 +12,9 @@ const toastLocals = {
   },
   en: {
     error: "Something went wrong :(",
+    succes: "Done",
     successProduct: "Product successfully created",
+    successProductUpdate: "Product successfully updated",
     successOrder: "Order successfully created",
     removeOrder: "Order successfully removed",
     updateAmount: "Amount successfully changed",
@@ -19,7 +23,9 @@ const toastLocals = {
   },
   ua: {
     error: "Щось пішло не так :(",
+    success: "Готово",
     successProduct: "Продукт успішно створений",
+    successProductUpdate: "Продукт успішно оновлено",
     successOrder: "Замовлення успішно створено",
     removeOrder: "Замовлення успішно видалено",
     updateAmount: "Кількість успішно змінено",
@@ -28,7 +34,9 @@ const toastLocals = {
   },
   pl: {
     error: "Coś poszło nie tak :(",
+    success: "Gotowe",
     successProduct: "Produkt został pomyślnie utworzony",
+    successProductUpdate: "Produkt został pomyślnie zaktualizowany",
     successOrder: "Zamówienie zostało pomyślnie utworzone",
     removeOrder: "Zamówienie zostało pomyślnie usunięte",
     updateAmount: "Ilość została pomyślnie zmieniona",

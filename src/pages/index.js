@@ -16,7 +16,6 @@ import { useState } from "react";
 import Login from "@/components/Login";
 
 export default function Home() {
-  const [loginD, setLoginD] = useState(false);
   const imgUrl = "/logo_transparent.png";
   const login = useSelector((state) => state.login.login);
   const lang = useSelector((state) => state.lang.lang);
@@ -34,59 +33,6 @@ export default function Home() {
           alignItems: "center",
         }}
       >
-        {loginD ? (
-          <Login />
-        ) : (
-          <>
-            <Link href="/users/kitchen">
-              <Button
-                variant="outlined"
-                onClick={() => {
-                  dispatch(setUserId("clk2kivlz0001u6a897wriha1"));
-                  dispatch(setUserRole("kitchen"));
-                }}
-              >
-                Enter as kitchen
-              </Button>
-            </Link>
-            <Link href="/users/supply">
-              <Button
-                variant="outlined"
-                sx={{ mt: 2 }}
-                onClick={() => {
-                  dispatch(setUserId("cljcswv3000010vezy3rd8gx3"));
-                  dispatch(setUserRole("supply"));
-                }}
-              >
-                Enter as supply
-              </Button>
-            </Link>
-            <Link href="/users/ceo">
-              <Button
-                variant="outlined"
-                sx={{ mt: 2 }}
-                onClick={() => {
-                  dispatch(setUserId("clkmhos100001u6vkwk2vaihg"));
-                  dispatch(setUserRole("ceo"));
-                }}
-              >
-                Enter as CEO
-              </Button>
-            </Link>
-            <Link href="/users/admin">
-              <Button
-                variant="outlined"
-                sx={{ mt: 2 }}
-                onClick={() => {
-                  dispatch(setUserId("clj8wrd2700010vn9o5wf9z3x"));
-                  dispatch(setUserRole("ceo"));
-                }}
-              >
-                Enter as ADMIN
-              </Button>
-            </Link>
-          </>
-        )}
         <Box
           component="div"
           sx={{
@@ -101,14 +47,7 @@ export default function Home() {
             zIndex: "-100",
           }}
         />
-        <Button
-          variant="outlined"
-          onClick={() => {
-            setLoginD(!loginD);
-          }}
-        >
-          Login?
-        </Button>
+        {lang && <Login lang={lang} />}
       </Container>
     </>
   );

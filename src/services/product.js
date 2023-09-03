@@ -40,3 +40,14 @@ export const createProduct = async (name, unitId, type) => {
     toast.error(error.message);
   }
 };
+
+export const editQuantity = async (id, amount) => {
+  try {
+    const result = await axios.put(
+      `/api/product/edit-quantity/?id=${id}&amount=${amount}`
+    );
+    return result.data;
+  } catch (error) {
+    toast.error(error.message);
+  }
+};

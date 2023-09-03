@@ -79,7 +79,7 @@ model Order {
   done      Boolean @default(false)
   pending   Boolean @default(false)
   doneAmount Float @default(0.0)
-  applicant User     @relation(fields: [applicantId], references: [id])
+  applicant User     @relation(fields: [applicantId], references: [id], onDelete: Cascade)
   product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   units     Unit     @relation(fields: [unitId], references: [id])
   createdAt DateTime @default(now()) @db.Date

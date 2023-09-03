@@ -10,6 +10,9 @@ import { useSelector } from "react-redux";
 import EditOrder from "../EditOrder";
 
 const NotSupplyButtons = ({
+  ordered,
+  done,
+  pending,
   disabled,
   onDelete,
   id,
@@ -45,7 +48,7 @@ const NotSupplyButtons = ({
         <span>
           <IconButton
             aria-label="edit"
-            disabled={disabled}
+            disabled={disabled || ordered || pending || done}
             onClick={() => setShowEdit(true)}
           >
             <EditNoteIcon fontSize="large" color="warning" />

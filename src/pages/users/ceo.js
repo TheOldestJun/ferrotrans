@@ -12,8 +12,10 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { Type } from "@prisma/client";
+import Oops from "@/components/Oops";
 
 const CEO = ({ units }) => {
+  const login = useSelector((state) => state.login.login);
   const lang = useSelector((state) => state.lang.lang);
   const userId = useSelector((state) => state.login.userId);
   const userRole = useSelector((state) => state.login.role);
@@ -35,6 +37,9 @@ const CEO = ({ units }) => {
     queryKey: ["orders", userId],
     queryFn: () => getAllByUserId(userId),
   });
+  if (!login) {
+    return <Oops />;
+  }
   return (
     <Container>
       {isLoading && <Info message={main[lang].loading} />}
