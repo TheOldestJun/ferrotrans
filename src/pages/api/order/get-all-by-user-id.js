@@ -1,3 +1,5 @@
+import prisma from "../../../../prisma";
+
 import moment from "moment";
 import { MAX_PERIOD } from "@/utilities/constants";
 
