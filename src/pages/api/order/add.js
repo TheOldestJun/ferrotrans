@@ -9,12 +9,14 @@ const addOrder = async (req, res) => {
   const { productId, unitId, amount, applicantId } = req.body;
   const today = new Date();
   const title = storeCorrectDate(today);
+  const newAmount = parseFloat(amount.replace(/,/, "."));
+
   try {
     const result = await prisma.order.create({
       data: {
         productId,
         unitId,
-        amount: parseFloat(amount),
+        amount: newAmount,
         applicantId,
         title,
       },

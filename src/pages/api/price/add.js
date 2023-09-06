@@ -7,6 +7,8 @@ const AddPrice = async (req, res) => {
     return;
   }
   const { amount, productId } = req.body;
+  const newAmount = parseFloat(amount.replace(/,/, "."));
+
   if (!amount) {
     res.status(400).json({ error: "No amount" });
     return;
@@ -19,7 +21,7 @@ const AddPrice = async (req, res) => {
   try {
     await prisma.price.create({
       data: {
-        amount: parseFloat(amount),
+        amount: newAmount,
         productId: productId,
       },
     });

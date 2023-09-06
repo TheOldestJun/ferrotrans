@@ -6,13 +6,15 @@ const EditAmount = async (req, res) => {
     return;
   }
   const { amount, id } = req.query;
+  const newAmount = parseFloat(amount.replace(/,/, "."));
+
   try {
     const result = await prisma.order.update({
       where: {
         id: id,
       },
       data: {
-        amount: parseFloat(amount),
+        amount: newAmount,
       },
     });
     res.status(200).json(result);

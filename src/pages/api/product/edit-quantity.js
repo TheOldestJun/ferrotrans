@@ -6,7 +6,8 @@ const EditQuantity = async (req, res) => {
     return;
   }
   const { id, amount } = req.query;
-  const quantity = parseFloat(amount.replace(/,/, "."));
+  const newAmount = parseFloat(amount.replace(/,/, "."));
+
   try {
     const result = await prisma.product.update({
       where: {
@@ -14,7 +15,7 @@ const EditQuantity = async (req, res) => {
       },
       data: {
         quantity: {
-          decrement: quantity,
+          decrement: newAmount,
         },
       },
     });

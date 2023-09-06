@@ -1,5 +1,4 @@
 import prisma from "../../../../prisma";
-
 const addProduct = async (req, res) => {
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method not allowed" });
