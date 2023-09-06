@@ -81,6 +81,7 @@ const AdminPanel = ({ data, rolesData }) => {
           <CardContent sx={{ flex: "1 0 auto" }}>
             <Typography>{user.firstName}</Typography>
             <Typography>{user.lastName}</Typography>
+            <Typography>{user.role.title}</Typography>
           </CardContent>
           <Divider />
           <CardActions>
