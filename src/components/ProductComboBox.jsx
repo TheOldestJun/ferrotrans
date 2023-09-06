@@ -107,7 +107,7 @@ const ProductComboBox = ({ data, units, type, lang }) => {
     addOrder({
       productId: value.id,
       unitId: value.unitsId,
-      amount: parseFloat(amount.replace(/,/, ".")),
+      amount: amount,
       applicantId: userId,
     });
   };
