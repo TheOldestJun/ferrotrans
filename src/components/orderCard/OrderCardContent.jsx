@@ -8,6 +8,7 @@ const OrderCardContent = ({
   title,
   product,
   amount,
+  description,
   units,
   doneAt,
   done,
@@ -34,6 +35,9 @@ const OrderCardContent = ({
       <Divider sx={{ my: 1 }} color="#4caf50" />
       <Typography component="div" variant="h5" color={"primary.dark"}>
         {product}
+      </Typography>
+      <Typography component="div" variant="subtitle2">
+        {description ? description : main[lang].noNotes}
       </Typography>
       <Typography
         variant="h6"

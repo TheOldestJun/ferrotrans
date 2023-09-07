@@ -24,6 +24,7 @@ const main = {
     dateOrdered: "Дата заказа",
     doneAmount: "выполнено",
     newPassword: "Записать новый пароль",
+    noNotes: "Без примечаний",
   },
   en: {
     version: "Version",
@@ -50,6 +51,7 @@ const main = {
     dateOrdered: "Date ordered",
     doneAmount: "done",
     newPassword: "Save new password",
+    noNotes: "No notes",
   },
   ua: {
     version: "Версія",
@@ -76,6 +78,7 @@ const main = {
     dateOrdered: "Дата замовлення",
     doneAmount: "виконано",
     newPassword: "Записати новий пароль",
+    noNotes: "Жодних приміток",
   },
   pl: {
     version: "Wersja",
@@ -102,6 +105,7 @@ const main = {
     dateOrdered: "Data zamówienia",
     doneAmount: "wykonane",
     newPassword: "Zapisz nowe hasło",
+    noNotes: "Brak notatek",
   },
 };
 

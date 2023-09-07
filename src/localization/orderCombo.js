@@ -9,6 +9,7 @@ const orderCombo = {
     title: "Наименование",
     cancel: "Отмена",
     add: "Добавить",
+    desc: "Примечания",
   },
   en: {
     chooseProduct: "Choose product",
@@ -20,6 +21,7 @@ const orderCombo = {
     title: "Product title",
     cancel: "Cancel",
     add: "Add",
+    desc: "Notes",
   },
   ua: {
     chooseProduct: "Виберіть продукт",
@@ -31,6 +33,7 @@ const orderCombo = {
     title: "Назва",
     cancel: "Скасувати",
     add: "Додати",
+    desc: "Примітки",
   },
   pl: {
     chooseProduct: "Wybierz produkt",
@@ -42,6 +45,7 @@ const orderCombo = {
     title: "Nazwa produktu",
     cancel: "Anuluj",
     add: "Dodaj",
+    desc: "Uwagi",
   },
 };
 

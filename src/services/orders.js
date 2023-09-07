@@ -21,12 +21,19 @@ export const getAllByUserId = async (userId) => {
   }
 };
 
-export const createOrder = async (productId, unitId, amount, applicantId) => {
+export const createOrder = async (
+  productId,
+  unitId,
+  amount,
+  description,
+  applicantId
+) => {
   try {
     const result = await axios.post("/api/order/add", {
       productId,
       unitId,
       amount,
+      description,
       applicantId,
     });
     return result.data;

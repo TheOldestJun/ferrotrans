@@ -10,6 +10,7 @@ const getAll = async (req, res) => {
         id: true,
         title: true,
         amount: true,
+        description: true,
         ordered: true,
         done: true,
         doneAt: true,

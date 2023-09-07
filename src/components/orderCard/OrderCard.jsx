@@ -7,6 +7,7 @@ const OrderCard = ({
   amount,
   doneAmount,
   units,
+  description,
   product,
   productId,
   productType,
@@ -35,6 +36,7 @@ const OrderCard = ({
         <OrderCardContent
           product={product}
           amount={amount}
+          description={description}
           doneAmount={doneAmount}
           units={units}
           title={title}

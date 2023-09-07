@@ -6,7 +6,7 @@ const addOrder = async (req, res) => {
     res.status(405).json({ error: "Method not allowed" });
     return;
   }
-  const { productId, unitId, amount, applicantId } = req.body;
+  const { productId, unitId, amount, description, applicantId } = req.body;
   const today = new Date();
   const title = storeCorrectDate(today);
   const newAmount = parseFloat(amount.replace(/,/, "."));
@@ -19,6 +19,7 @@ const addOrder = async (req, res) => {
         amount: newAmount,
         applicantId,
         title,
+        description,
       },
     });
     res.status(200).json(result);

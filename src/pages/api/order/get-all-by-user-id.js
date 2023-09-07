@@ -25,6 +25,7 @@ const getAllByUserId = async (req, res) => {
         id: true,
         title: true,
         amount: true,
+        description: true,
         doneAmount: true,
         ordered: true,
         done: true,

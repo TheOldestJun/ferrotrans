@@ -65,12 +65,13 @@ model Price {
   amount      Float
   productId   String
   dateCreated DateTime @db.Date @default(now())
-  product     Product  @relation(fields: [productId], references: [id])
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
 model Order {
   id        String   @id @default(cuid())
   title     String
+  description String?
   unitId    String
   amount    Float
   productId String

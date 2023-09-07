@@ -40,8 +40,8 @@ const ProductComboBox = ({ data, units, type, lang }) => {
   });
 
   const { mutate: addOrder } = useMutation({
-    mutationFn: ({ productId, unitId, amount, applicantId }) =>
-      createOrder(productId, unitId, amount, applicantId),
+    mutationFn: ({ productId, unitId, amount, description, applicantId }) =>
+      createOrder(productId, unitId, amount, description, applicantId),
     mutationKey: ["orders", userId],
     onSuccess: () => {
       queryClient.invalidateQueries(["orders", userId]);
@@ -60,6 +60,7 @@ const ProductComboBox = ({ data, units, type, lang }) => {
     unitsId: "",
   });
   const [amount, setAmount] = useState(null); //amount to order
+  const [description, setDescription] = useState("");
 
   //format products data
   const products = data.map((product) => {
@@ -107,7 +108,8 @@ const ProductComboBox = ({ data, units, type, lang }) => {
     addOrder({
       productId: value.id,
       unitId: value.unitsId,
-      amount: amount,
+      amount,
+      description,
       applicantId: userId,
     });
   };
@@ -181,6 +183,18 @@ const ProductComboBox = ({ data, units, type, lang }) => {
                 setAmount(e.target.value);
               }}
               label={orderCombo[lang].amount}
+              type="text"
+              variant="standard"
+            />
+            <TextField
+              margin="dense"
+              id="amount"
+              value={description}
+              onChange={(e) => {
+                e.preventDefault();
+                setDescription(e.target.value);
+              }}
+              label={orderCombo[lang].desc}
               type="text"
               variant="standard"
             />

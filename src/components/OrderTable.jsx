@@ -65,6 +65,7 @@ const OrderTable = ({ data, lang, userRole, userId }) => {
         key={order.id}
         id={order.id}
         amount={order.amount}
+        description={order.description}
         doneAmount={order.doneAmount}
         done={order.done}
         pending={order.pending}
