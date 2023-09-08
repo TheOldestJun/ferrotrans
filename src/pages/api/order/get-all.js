@@ -11,6 +11,8 @@ const getAll = async (req, res) => {
         title: true,
         amount: true,
         description: true,
+        doneAmount: true,
+        orderAmount: true,
         ordered: true,
         done: true,
         doneAt: true,

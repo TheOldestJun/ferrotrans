@@ -27,6 +27,7 @@ const getAllByUserId = async (req, res) => {
         amount: true,
         description: true,
         doneAmount: true,
+        orderAmount: true,
         ordered: true,
         done: true,
         pending: true,

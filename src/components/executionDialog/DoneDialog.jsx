@@ -30,6 +30,7 @@ const DoneDialog = ({
   productName,
   productType,
   productId,
+  orderAmount,
   defaultUnits,
   amountLabel,
   onCancel,
@@ -38,7 +39,7 @@ const DoneDialog = ({
   cancel,
   id,
 }) => {
-  const [amount, setAmount] = useState(null);
+  const [amount, setAmount] = useState(orderAmount);
   const handleSubmit = async (event) => {
     event.preventDefault();
     onConfirm({

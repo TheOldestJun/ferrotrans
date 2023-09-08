@@ -5,6 +5,7 @@ import NotSupplyButtons from "./NotSupplyButtons";
 
 const OrderCardButtons = ({
   ordered,
+  orderAmount,
   done,
   pending,
   role,
@@ -25,6 +26,7 @@ const OrderCardButtons = ({
     >
       <SupplyButtons
         ordered={ordered}
+        orderAmount={orderAmount}
         done={done}
         pending={pending}
         disabled={role !== "supply" ? true : false}

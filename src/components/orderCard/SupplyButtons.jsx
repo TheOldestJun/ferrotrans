@@ -17,6 +17,7 @@ import Confirm from "../Confirm";
 
 const SupplyButtons = ({
   ordered,
+  orderAmount,
   pending,
   done,
   disabled,
@@ -46,7 +47,7 @@ const SupplyButtons = ({
         <span>
           <IconButton
             aria-label="order"
-            disabled={disabled || ordered}
+            disabled={disabled || done}
             onClick={() => setShowDialog(true)}
           >
             {ordered ? (
@@ -95,6 +96,7 @@ const SupplyButtons = ({
           productId={productId} // id of the product
           productType={productType} // type of product KITCHEN or OTHER
           defaultUnits={units}
+          orderAmount={orderAmount}
           confirm={main[lang].confirm}
           cancel={main[lang].cancel}
           amountLabel={main[lang].amountLabel}
@@ -103,13 +105,6 @@ const SupplyButtons = ({
           onConfirm={onEditDone}
           id={id} //order id
         />
-        /*        <Confirm
-          message={main[lang].confirmMessage}
-          confirm={main[lang].confirm}
-          cancel={main[lang].cancel}
-          onConfirm={handleConfirmDone}
-          onCancel={handleCancelDone}
-        /> */
       )}
     </>
   );

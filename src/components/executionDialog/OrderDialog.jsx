@@ -38,16 +38,24 @@ const OrderDialog = ({
   productId,
 }) => {
   const [amount, setAmount] = useState(defaultQuantity);
-  const [price, setPrice] = useState(null);
+  const [price, setPrice] = useState("");
   const handleSubmit = async (event) => {
     event.preventDefault();
-    onConfirm({ id: id, ordered: true });
-    const resultPrice = (price / amount).toFixed(2);
+    console.log(typeof price, typeof amount);
+    const newPrice = parseFloat(price.replace(/,/, "."));
+    let newAmount;
+    if (typeof amount !== "number") {
+      newAmount = parseFloat(amount.replace(/,/, "."));
+    } else {
+      newAmount = amount;
+    }
+    const resultPrice = (newPrice / newAmount).toFixed(2);
     try {
       await axios.post("/api/price/add", {
         amount: resultPrice,
         productId: productId,
       });
+      onConfirm({ id: id, ordered: true, orderAmount: newAmount });
     } catch (error) {
       alert(error.message);
     }

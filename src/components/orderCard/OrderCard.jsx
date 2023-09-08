@@ -6,6 +6,7 @@ const OrderCard = ({
   title,
   amount,
   doneAmount,
+  orderAmount,
   units,
   description,
   product,
@@ -49,6 +50,7 @@ const OrderCard = ({
 
       <OrderCardButtons
         ordered={ordered}
+        orderAmount={orderAmount}
         done={done}
         pending={pending}
         role={role}

@@ -17,7 +17,11 @@ const Header = () => {
           <Typography variant="h6" align="center">
             {`${firstName ? firstName : ""} ${lastName ? lastName : ""}`}
           </Typography>
-          <Avatar src={avatarUrl} sx={{ ml: 2 }} />
+          {avatarUrl ? (
+            <Avatar src={avatarUrl} sx={{ ml: 2 }} />
+          ) : (
+            <Avatar sx={{ ml: 2 }}>{`${firstName[0]}${lastName[0]}`}</Avatar>
+          )}
         </Toolbar>
       </AppBar>
     </>

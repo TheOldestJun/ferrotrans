@@ -62,11 +62,12 @@ export const updateOrderAmount = async (id, amount) => {
   }
 };
 
-export const updateOrderOrdered = async (id, ordered) => {
+export const updateOrderOrdered = async (id, ordered, orderAmount) => {
   try {
     const result = await axios.put(`/api/order/edit-ordered/`, {
       id,
       ordered,
+      orderAmount,
     });
     return result.data;
   } catch (error) {

@@ -13,10 +13,13 @@ import {
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import { useQuery } from "react-query";
+import { getAllKitchen } from "../../services/product";
 import supply from "@/localization/supply";
 import prisma from "../../../prisma";
 import SupplyTable from "@/components/SupplyTable";
 import Oops from "@/components/Oops";
+import DebitTable from "@/components/DebitTable";
 
 const Supply = ({ appsNames }) => {
   const lang = useSelector((state) => state.lang.lang);
@@ -26,6 +29,14 @@ const Supply = ({ appsNames }) => {
   const [tab, setTab] = useState("1");
   const [applicantId, setApplicantId] = useState("");
   const [applicantRole, setApplicantRole] = useState("");
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["products"],
+    queryFn: getAllKitchen,
+  });
   if (!login) {
     return <Oops />;
   }
@@ -68,6 +79,7 @@ const Supply = ({ appsNames }) => {
             }}
           >
             <Tab label={supply[lang].order} value="1" />
+            <Tab label={supply[lang].debit} value="2" />
           </TabList>
         </Box>
         <TabPanel value="1">
@@ -94,6 +106,9 @@ const Supply = ({ appsNames }) => {
               {cards}
             </Grid>
           )}
+        </TabPanel>
+        <TabPanel value="2">
+          <DebitTable data={products} lang={lang} />
         </TabPanel>
       </TabContext>
     </Container>

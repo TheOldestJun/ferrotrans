@@ -9,7 +9,7 @@ const EditDone = async (req, res) => {
   const { id, productType, productId, amount } = req.body;
   const today = new Date();
   const doneAt = storeCorrectDate(today);
-  const newAmount = parseFloat(amount.replace(/,/, "."));
+  //  const newAmount = parseFloat(amount.replace(/,/, "."));
   try {
     if (productType === "KITCHEN") {
       await prisma.product.update({
@@ -18,7 +18,7 @@ const EditDone = async (req, res) => {
         },
         data: {
           quantity: {
-            increment: newAmount,
+            increment: amount,
           },
         },
       });
@@ -30,7 +30,7 @@ const EditDone = async (req, res) => {
       },
       data: {
         doneAmount: {
-          increment: newAmount,
+          increment: amount,
         },
       },
     });

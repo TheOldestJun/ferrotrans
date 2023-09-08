@@ -38,7 +38,8 @@ const OrderTable = ({ data, lang, userRole, userId }) => {
   });
 
   const { mutate: updateOrdered } = useMutation({
-    mutationFn: ({ id, ordered }) => updateOrderOrdered(id, ordered),
+    mutationFn: ({ id, ordered, orderAmount }) =>
+      updateOrderOrdered(id, ordered, orderAmount),
     onSuccess: () => {
       queryClient.invalidateQueries(["orders", userId]);
       toast.success(toastLocals[lang].updateOrdered);
@@ -67,6 +68,7 @@ const OrderTable = ({ data, lang, userRole, userId }) => {
         amount={order.amount}
         description={order.description}
         doneAmount={order.doneAmount}
+        orderAmount={order.orderAmount}
         done={order.done}
         pending={order.pending}
         doneAt={formatDate(order.doneAt, lang)}
