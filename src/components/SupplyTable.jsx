@@ -16,8 +16,7 @@ const SupplyTable = ({ lang, userRole, applicantId }) => {
   });
   return (
     <Container>
-      {isLoadingOrders && <Info message={main[lang].loading} />}
-      {isErrorOrders && <Info message={main[lang].error} />}
+      {isLoadingOrders && <Info />}
       {ordersRaw && (
         <OrderTable
           data={ordersRaw}

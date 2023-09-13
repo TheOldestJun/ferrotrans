@@ -21,6 +21,15 @@ export const getAllByUserId = async (userId) => {
   }
 };
 
+export const getAppsNames = async () => {
+  try {
+    const result = await axios.get("/api/order/get-apps-names");
+    return result.data;
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
+
 export const createOrder = async (
   productId,
   unitId,

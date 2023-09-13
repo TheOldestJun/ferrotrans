@@ -70,10 +70,10 @@ const Kitchen = ({ units, prods }) => {
 
   return (
     <Container>
-      {isLoading && <Info message={main[lang].loading} />}
-      {isError && <Info message={main[lang].error} />}
-      {isLoadingOrders && <Info message={main[lang].loading} />}
-      {isErrorOrders && <Info message={main[lang].error} />}
+      {isLoading && <Info />}
+
+      {isLoadingOrders && <Info />}
+
       <TabContext value={tab}>
         <Box sx={{ borderBottom: 1, BorderColor: "divider" }}>
           <TabList

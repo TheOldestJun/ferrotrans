@@ -18,8 +18,7 @@ const Admin = ({ roles }) => {
   }
   return (
     <Container>
-      {isLoading && <Info message={"Loading"} />}
-      {isError && <Info message={"Error"} />}
+      {isLoading && <Info />}
       {data && <AdminPanel data={data} rolesData={roles} />}
     </Container>
   );
