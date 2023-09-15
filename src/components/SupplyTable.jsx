@@ -15,7 +15,7 @@ const SupplyTable = ({ lang, userRole, applicantId }) => {
     queryFn: () => getAllByUserId(applicantId),
   });
   return (
-    <Container>
+    <>
       {isLoadingOrders && <Info />}
       {ordersRaw && (
         <OrderTable
@@ -25,7 +25,7 @@ const SupplyTable = ({ lang, userRole, applicantId }) => {
           userId={applicantId}
         />
       )}
-    </Container>
+    </>
   );
 };
 

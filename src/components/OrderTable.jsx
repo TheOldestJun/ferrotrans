@@ -88,11 +88,9 @@ const OrderTable = ({ data, lang, userRole, userId }) => {
     </Grid>
   ));
   return (
-    <Container sx={{ mt: 2 }}>
-      <Grid container spacing={1}>
-        {orderCards}
-      </Grid>
-    </Container>
+    <Grid container spacing={1}>
+      {orderCards}
+    </Grid>
   );
 };
 
