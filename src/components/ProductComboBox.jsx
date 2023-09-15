@@ -114,7 +114,7 @@ const ProductComboBox = ({ data, units, type, lang }) => {
     });
   };
   return (
-    <Container>
+    <>
       <Stack direction="column" spacing={2}>
         <Autocomplete
           options={products}
@@ -240,7 +240,7 @@ const ProductComboBox = ({ data, units, type, lang }) => {
           </DialogActions>
         </form>
       </Dialog>
-    </Container>
+    </>
   );
 };
 
