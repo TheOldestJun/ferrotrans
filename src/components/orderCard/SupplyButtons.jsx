@@ -14,6 +14,7 @@ import main from "@/localization/main";
 import OrderDialog from "../executionDialog/OrderDialog";
 import DoneDialog from "../executionDialog/DoneDialog";
 import Confirm from "../Confirm";
+import toastLocals from "@/localization/toast";
 
 const SupplyButtons = ({
   ordered,
@@ -88,6 +89,7 @@ const SupplyButtons = ({
           onConfirm={onEditOrdered}
           id={id}
           productId={productId}
+          error={toastLocals[lang].errorNoNumber}
         />
       )}
       {showConfirm && (

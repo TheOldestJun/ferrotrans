@@ -25,6 +25,7 @@ const main = {
     doneAmount: "выполнено",
     newPassword: "Записать новый пароль",
     noNotes: "Без примечаний",
+    logout: "Выйти",
   },
   en: {
     version: "Version",
@@ -52,6 +53,7 @@ const main = {
     doneAmount: "done",
     newPassword: "Save new password",
     noNotes: "No notes",
+    logout: "Logout",
   },
   ua: {
     version: "Версія",
@@ -79,6 +81,7 @@ const main = {
     doneAmount: "виконано",
     newPassword: "Записати новий пароль",
     noNotes: "Жодних приміток",
+    logout: "Вийти",
   },
   pl: {
     version: "Wersja",
@@ -106,6 +109,7 @@ const main = {
     doneAmount: "wykonane",
     newPassword: "Zapisz nowe hasło",
     noNotes: "Brak notatek",
+    logout: "Wyloguj się",
   },
 };
 

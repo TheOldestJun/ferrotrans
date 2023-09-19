@@ -12,6 +12,7 @@ import {
 import { useState } from "react";
 
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const style = {
   position: "absolute",
@@ -36,16 +37,26 @@ const OrderDialog = ({
   cancel,
   id,
   productId,
+  error,
 }) => {
   const [amount, setAmount] = useState(defaultQuantity);
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState("0.0");
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(typeof price, typeof amount);
     const newPrice = parseFloat(price.replace(/,/, "."));
+    if (!newPrice) {
+      onCancel();
+      toast.error(error);
+      return;
+    }
     let newAmount;
     if (typeof amount !== "number") {
       newAmount = parseFloat(amount.replace(/,/, "."));
+      if (!newAmount) {
+        onCancel();
+        toast.error(error);
+        return;
+      }
     } else {
       newAmount = amount;
     }

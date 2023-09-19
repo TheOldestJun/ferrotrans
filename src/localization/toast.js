@@ -1,6 +1,7 @@
 const toastLocals = {
   ru: {
     error: "Что-то пошло не так :(",
+    errorNoNumber: "Введите число!",
     success: "Готово",
     successProduct: "Продукт успешно создан",
     successProductUpdate: "Продукт успешно обновлен",
@@ -12,6 +13,7 @@ const toastLocals = {
   },
   en: {
     error: "Something went wrong :(",
+    errorNoNumber: "Enter a number!",
     succes: "Done",
     successProduct: "Product successfully created",
     successProductUpdate: "Product successfully updated",
@@ -23,6 +25,7 @@ const toastLocals = {
   },
   ua: {
     error: "Щось пішло не так :(",
+    errorNoNumber: "Введіть число!",
     success: "Готово",
     successProduct: "Продукт успішно створений",
     successProductUpdate: "Продукт успішно оновлено",
@@ -34,6 +37,7 @@ const toastLocals = {
   },
   pl: {
     error: "Coś poszło nie tak :(",
+    errorNoNumber: "Wprowadź liczbę!",
     success: "Gotowe",
     successProduct: "Produkt został pomyślnie utworzony",
     successProductUpdate: "Produkt został pomyślnie zaktualizowany",
