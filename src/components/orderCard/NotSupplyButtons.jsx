@@ -4,6 +4,7 @@ import EditNoteIcon from "@mui/icons-material/EditNote";
 import { useState } from "react";
 import Confirm from "@/components/Confirm";
 import main from "@/localization/main";
+import toastLocals from "@/localization/toast";
 import orderCombo from "@/localization/orderCombo";
 
 import { useSelector } from "react-redux";
@@ -86,6 +87,7 @@ const NotSupplyButtons = ({
           units={units}
           product={product}
           quantity={quantity}
+          error={toastLocals[lang].errorNoNumber}
         />
       )}
     </>

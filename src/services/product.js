@@ -6,7 +6,7 @@ export const getAll = async () => {
     const result = await axios.get("/api/product/get-all");
     return result.data;
   } catch (error) {
-    toast.error(error.message);
+    throw new Error(error.message);
   }
 };
 
@@ -15,7 +15,7 @@ export const getAllKitchen = async () => {
     const result = await axios.get("/api/product/get-all-kitchen");
     return result.data;
   } catch (error) {
-    toast.error(error.message);
+    throw new Error(error.message);
   }
 };
 
@@ -24,7 +24,7 @@ export const getAllOther = async () => {
     const result = await axios.get("/api/product/get-all-other");
     return result.data;
   } catch (error) {
-    toast.error(error.message);
+    throw new Error(error.message);
   }
 };
 
@@ -37,7 +37,7 @@ export const createProduct = async (name, unitId, type) => {
     });
     return result.data;
   } catch (error) {
-    toast.error(error.message);
+    throw new Error(error.message);
   }
 };
 
@@ -48,6 +48,6 @@ export const editQuantity = async (id, amount) => {
     );
     return result.data;
   } catch (error) {
-    toast.error(error.message);
+    throw new Error(error.message);
   }
 };

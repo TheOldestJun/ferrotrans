@@ -74,7 +74,7 @@ export const getAllUsers = async () => {
     const result = await axios.get("/api/user/get-all");
     return result.data;
   } catch (error) {
-    toast.error(error.message);
+    throw new Error(error.message);
   }
 };
 
@@ -83,6 +83,6 @@ export const deleteUser = async (id) => {
     const result = await axios.delete(`/api/user/delete/?id=${id}`);
     return result.data;
   } catch (error) {
-    toast.error(error.message);
+    throw new Error(error.message);
   }
 };

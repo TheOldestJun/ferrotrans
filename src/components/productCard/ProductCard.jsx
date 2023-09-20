@@ -23,6 +23,7 @@ const ProductCard = ({
   confirm,
   cancel,
   debitQuestion,
+  error,
 }) => {
   const [modal, showModal] = useState(false);
   const handleCancel = () => {
@@ -67,6 +68,7 @@ const ProductCard = ({
           editLabel={amount}
           onCancel={handleCancel}
           onEdit={onEdit}
+          error={error}
         />
       )}
     </>

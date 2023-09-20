@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 
-import orderCombo from "@/localization/orderCombo";
+import toast from "react-hot-toast";
 
 const style = {
   position: "absolute",
@@ -32,8 +32,24 @@ const EditOrder = ({
   product,
   label,
   quantity,
+  error,
 }) => {
   const [amount, setAmount] = useState(quantity);
+
+  const updateAmount = () => {
+    let newAmount;
+    if (typeof amount !== "number") {
+      newAmount = parseFloat(amount.replace(/,/, "."));
+      if (!newAmount) {
+        onCancel();
+        toast.error(error);
+        return;
+      }
+    } else {
+      newAmount = amount;
+    }
+    onConfirm(newAmount);
+  };
   return (
     <>
       <Modal open={true} aria-label="modal-info" aria-description="info">
@@ -68,7 +84,7 @@ const EditOrder = ({
             variant="standard"
           />
           <Stack direction="row" spacing={2} justifyContent={"center"} mt={2}>
-            <Button variant="outlined" onClick={() => onConfirm(amount)}>
+            <Button variant="outlined" onClick={updateAmount}>
               {confirm}
             </Button>
             <Button variant="outlined" onClick={onCancel}>

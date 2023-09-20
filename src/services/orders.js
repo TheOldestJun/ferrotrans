@@ -47,7 +47,7 @@ export const createOrder = async (
     });
     return result.data;
   } catch (error) {
-    toast.error(error.message);
+    throw new Error(error.message);
   }
 };
 
@@ -56,7 +56,7 @@ export const deleteOder = async (id) => {
     const result = await axios.delete(`/api/order/delete/?id=${id}`);
     return result.data;
   } catch (error) {
-    toast.error(error.message);
+    throw new Error(error.message);
   }
 };
 
@@ -67,7 +67,7 @@ export const updateOrderAmount = async (id, amount) => {
     );
     return result.data;
   } catch (error) {
-    toast.error(error.message);
+    throw new Error(error.message);
   }
 };
 
@@ -80,7 +80,7 @@ export const updateOrderOrdered = async (id, ordered, orderAmount) => {
     });
     return result.data;
   } catch (error) {
-    toast.error(error.message);
+    throw new Error(error.message);
   }
 };
 
@@ -94,6 +94,6 @@ export const updateOrderDone = async (id, productType, productId, amount) => {
     });
     return result.data;
   } catch (error) {
-    toast.error(error.message);
+    throw new Error(error.message);
   }
 };

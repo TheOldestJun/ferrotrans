@@ -32,7 +32,6 @@ const DebitTable = ({ data, lang }) => {
     },
   });
 
-
   const productCards = data.map((product) => {
     if (product.quantity > 0) {
       return (
@@ -51,6 +50,7 @@ const DebitTable = ({ data, lang }) => {
             confirm={main[lang].confirm}
             cancel={main[lang].cancel}
             debitQuestion={kitchen[lang].debitQuestion}
+            error={toastLocals[lang].errorNoNumber}
           />
         </Grid>
       );

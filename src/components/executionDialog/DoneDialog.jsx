@@ -38,15 +38,27 @@ const DoneDialog = ({
   confirm,
   cancel,
   id,
+  error,
 }) => {
   const [amount, setAmount] = useState(orderAmount);
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let newAmount;
+    if (typeof amount !== "number") {
+      newAmount = parseFloat(amount.replace(/,/, "."));
+      if (!newAmount) {
+        onCancel();
+        toast.error(error);
+        return;
+      }
+    } else {
+      newAmount = amount;
+    }
     onConfirm({
       id: id,
       productType: productType,
       productId: productId,
-      amount: amount,
+      amount: newAmount,
     });
     onCancel();
   };

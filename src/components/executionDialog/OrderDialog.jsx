@@ -40,15 +40,21 @@ const OrderDialog = ({
   error,
 }) => {
   const [amount, setAmount] = useState(defaultQuantity);
-  const [price, setPrice] = useState("0.0");
+  const [price, setPrice] = useState(0.0);
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const newPrice = parseFloat(price.replace(/,/, "."));
-    if (!newPrice) {
-      onCancel();
-      toast.error(error);
-      return;
+    let newPrice;
+    if (typeof amount === "number") {
+      newPrice = amount;
+    } else {
+      newPrice = parseFloat(price.replace(/,/, "."));
+      if (!newPrice) {
+        onCancel();
+        toast.error(error);
+        return;
+      }
     }
+
     let newAmount;
     if (typeof amount !== "number") {
       newAmount = parseFloat(amount.replace(/,/, "."));

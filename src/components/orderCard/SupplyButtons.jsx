@@ -106,6 +106,7 @@ const SupplyButtons = ({
           onCancel={handleCancelDone}
           onConfirm={onEditDone}
           id={id} //order id
+          error={toastLocals[lang].errorNoNumber}
         />
       )}
     </>

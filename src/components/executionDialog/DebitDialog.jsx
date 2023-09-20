@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const style = {
   position: "absolute",
@@ -30,13 +31,25 @@ const DebitDialog = ({
   editLabel,
   onCancel,
   onEdit,
+  error,
 }) => {
   const [amount, setAmount] = useState(null);
   const handleSubmit = (event) => {
     event.preventDefault();
+    let newAmount;
+    if (typeof amount !== "number") {
+      newAmount = parseFloat(amount.replace(/,/, "."));
+      if (!newAmount) {
+        onCancel();
+        toast.error(error);
+        return;
+      }
+    } else {
+      newAmount = amount;
+    }
     onEdit({
       id: productId,
-      amount: amount,
+      amount: newAmount,
     });
     onCancel();
   };

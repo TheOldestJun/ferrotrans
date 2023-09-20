@@ -1,6 +1,6 @@
 {
   "name": "supply-chain-management",
-  "version": "1.0.5a",
+  "version": "1.0.6a",
   "private": true,
   "scripts": {
     "dev": "next dev",

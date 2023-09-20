@@ -1,3 +1,6 @@
+//*ComboBox for creating orders with
+//*the ability to create new products
+
 import orderCombo from "@/localization/orderCombo";
 import toastLocals from "@/localization/toast";
 import { createProduct } from "../services/product";
@@ -22,11 +25,14 @@ import { useSelector } from "react-redux";
 import { capitalize } from "@/utilities/helpers";
 import toast from "react-hot-toast";
 
+//*autocomplete filter options
 const filter = createFilterOptions();
 
 const ProductComboBox = ({ data, units, type, lang }) => {
   const queryClient = useQueryClient();
   const userId = useSelector((state) => state.login.userId);
+
+  //!create product special for current user role
   const { mutate: addProduct } = useMutation({
     mutationFn: ({ name, unitId, type }) => createProduct(name, unitId, type),
     mutationKey: ["products"],
@@ -39,6 +45,7 @@ const ProductComboBox = ({ data, units, type, lang }) => {
     },
   });
 
+  //!create order for current user
   const { mutate: addOrder } = useMutation({
     mutationFn: ({ productId, unitId, amount, description, applicantId }) =>
       createOrder(productId, unitId, amount, description, applicantId),
@@ -52,17 +59,17 @@ const ProductComboBox = ({ data, units, type, lang }) => {
     },
   });
 
-  const [value, setValue] = useState(null); // dropbox value
-  const [open, toggleOpen] = useState(false); // add dialog open toggle
+  const [value, setValue] = useState(null); //!dropbox value
+  const [open, toggleOpen] = useState(false); //!add dialog open toggle
+  //!dialog for new item
   const [dialogValue, setDialogValue] = useState({
-    //dialog for new item
     label: "",
     unitsId: "",
   });
-  const [amount, setAmount] = useState(null); //amount to order
-  const [description, setDescription] = useState("");
+  const [amount, setAmount] = useState(null); //!amount to order
+  const [description, setDescription] = useState(""); //!additional description for order
 
-  //format products data
+  //!format products dataset
   const products = data.map((product) => {
     return {
       id: product.id,
@@ -72,7 +79,7 @@ const ProductComboBox = ({ data, units, type, lang }) => {
     };
   });
 
-  //format units data
+  //!format units data
   const unitsIds = units.map((unit) => {
     return (
       <MenuItem key={unit.id} value={unit.id}>
@@ -81,7 +88,7 @@ const ProductComboBox = ({ data, units, type, lang }) => {
     );
   });
 
-  // close add new item dialog without any data
+  //!close add new item dialog without any data
   const handleClose = () => {
     setDialogValue({
       label: "",
@@ -90,7 +97,7 @@ const ProductComboBox = ({ data, units, type, lang }) => {
     toggleOpen(false);
   };
 
-  //add new product
+  //!add new product
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setDialogValue({ ...dialogValue, unitsId: e.target.value });
@@ -102,13 +109,23 @@ const ProductComboBox = ({ data, units, type, lang }) => {
     handleClose();
   };
 
-  //handle add to order list
+  //!handle add to order list
   const handleAddToOrder = async (e) => {
     e.preventDefault();
+    let newAmount;
+    if (typeof amount !== "number") {
+      newAmount = parseFloat(amount.replace(/,/, "."));
+      if (!newAmount) {
+        toast.error(toastLocals[lang].errorNoNumber);
+        return;
+      }
+    } else {
+      newAmount = amount;
+    }
     addOrder({
       productId: value.id,
       unitId: value.unitsId,
-      amount,
+      amount: newAmount,
       description,
       applicantId: userId,
     });
@@ -151,6 +168,7 @@ const ProductComboBox = ({ data, units, type, lang }) => {
               setValue(newValue);
             }
           }}
+          /*filter products while entering input*/
           filterOptions={(options, params) => {
             const filtered = filter(options, params);
             if (params.inputValue !== "") {
@@ -204,7 +222,7 @@ const ProductComboBox = ({ data, units, type, lang }) => {
           </>
         )}
       </Stack>
-
+      {/*add new product dialog */}
       <Dialog open={open} onClose={handleClose}>
         <form onSubmit={handleFormSubmit}>
           <DialogTitle>{orderCombo[lang].newProduct}</DialogTitle>
