@@ -39,6 +39,7 @@ const OrderCard = ({
           amount={amount}
           description={description}
           doneAmount={doneAmount}
+          orderAmount={orderAmount}
           units={units}
           title={title}
           done={done}

@@ -13,6 +13,7 @@ const OrderCardContent = ({
   doneAt,
   done,
   doneAmount,
+  orderAmount,
   ordered,
   orderedAt,
 }) => {
@@ -39,13 +40,16 @@ const OrderCardContent = ({
       <Typography component="div" variant="subtitle2">
         {description ? description : main[lang].noNotes}
       </Typography>
+      <Typography component="div" sx={{ fontSize: "10px", color: "#c62828" }}>
+        {`${main[lang].ordered}/${main[lang].order}`}
+      </Typography>
       <Typography
         variant="h6"
         color="text.secondary"
         component="div"
         sx={{ pb: 1 }}
       >
-        {`${amount} ${units}, ${main[lang].doneAmount} - ${doneAmount} ${units}`}
+        {`${orderAmount}/${amount} ${units}, ${main[lang].doneAmount} - ${doneAmount} ${units}`}
       </Typography>
       <Divider color="#ff9800" />
     </CardContent>
