@@ -6,7 +6,7 @@ const EditDone = async (req, res) => {
     res.status(405).json({ error: "Method not allowed" });
     return;
   }
-  const { id, productType, productId, amount } = req.body;
+  const { id, productType, productId, amount, doneBy } = req.body;
   const today = new Date();
   const doneAt = storeCorrectDate(today);
   //  const newAmount = parseFloat(amount.replace(/,/, "."));
@@ -42,6 +42,7 @@ const EditDone = async (req, res) => {
         data: {
           pending: true,
           done: false,
+          doneBy: doneBy,
         },
       });
     } else {
@@ -53,6 +54,7 @@ const EditDone = async (req, res) => {
           pending: false,
           done: true,
           doneAt: doneAt,
+          doneBy: doneBy,
         },
       });
     }

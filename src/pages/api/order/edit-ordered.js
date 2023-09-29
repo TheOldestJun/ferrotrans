@@ -6,7 +6,7 @@ const EditOrdered = async (req, res) => {
     res.status(405).json({ error: "Method not allowed" });
     return;
   }
-  const { id, ordered, orderAmount } = req.body;
+  const { id, ordered, orderAmount, orderedBy } = req.body;
   const today = new Date();
   const orderedAt = storeCorrectDate(today);
   try {
@@ -17,6 +17,7 @@ const EditOrdered = async (req, res) => {
       data: {
         ordered: ordered,
         orderedAt: orderedAt,
+        orderedBy: orderedBy,
         orderAmount: {
           increment: orderAmount,
         },

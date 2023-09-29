@@ -71,12 +71,18 @@ export const updateOrderAmount = async (id, amount) => {
   }
 };
 
-export const updateOrderOrdered = async (id, ordered, orderAmount) => {
+export const updateOrderOrdered = async (
+  id,
+  ordered,
+  orderAmount,
+  orderedBy
+) => {
   try {
     const result = await axios.put(`/api/order/edit-ordered/`, {
       id,
       ordered,
       orderAmount,
+      orderedBy,
     });
     return result.data;
   } catch (error) {
@@ -84,13 +90,20 @@ export const updateOrderOrdered = async (id, ordered, orderAmount) => {
   }
 };
 
-export const updateOrderDone = async (id, productType, productId, amount) => {
+export const updateOrderDone = async (
+  id,
+  productType,
+  productId,
+  amount,
+  doneBy
+) => {
   try {
     const result = await axios.put(`/api/order/edit-done/`, {
       id,
       productType,
       productId,
       amount,
+      doneBy,
     });
     return result.data;
   } catch (error) {

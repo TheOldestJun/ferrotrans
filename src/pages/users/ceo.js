@@ -3,10 +3,10 @@ import { getAllOther } from "../../services/product";
 import { getAllByUserId } from "@/services/orders";
 import ProductComboBox from "@/components/ProductComboBox";
 import OrderTable from "@/components/OrderTable";
+import DoneOrderTable from "@/components/DoneOrderTable";
 import prisma from "../../../prisma";
 import Info from "@/components/Info";
-import main from "@/localization/main";
-import kitchen from "@/localization/kitchen";
+import ceo from "@/localization/ceo";
 import { Box, Tab, Container } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { useSelector } from "react-redux";
@@ -20,7 +20,7 @@ const CEO = ({ units }) => {
   const userId = useSelector((state) => state.login.userId);
   const userRole = useSelector((state) => state.login.role);
   const [tab, setTab] = useState("1");
-
+  // products that are not for kitchen use
   const {
     data: products,
     isLoading,
@@ -29,6 +29,7 @@ const CEO = ({ units }) => {
     queryKey: ["products"],
     queryFn: getAllOther,
   });
+  // orders not for kitchen use
   const {
     data: ordersRaw,
     isLoading: isLoadingOrders,
@@ -37,6 +38,7 @@ const CEO = ({ units }) => {
     queryKey: ["orders", userId],
     queryFn: () => getAllByUserId(userId),
   });
+
   if (!login) {
     return <Oops />;
   }
@@ -54,8 +56,8 @@ const CEO = ({ units }) => {
               setTab(value);
             }}
           >
-            <Tab label={kitchen[lang]["createOrder"]} value="1" />
-            <Tab label={kitchen[lang]["myOrders"]} value="2" />
+            <Tab label={ceo[lang].createOrder} value="1" />
+            <Tab label={ceo[lang].doneOrders} value="2" />
           </TabList>
         </Box>
         <TabPanel value="1">
@@ -78,7 +80,7 @@ const CEO = ({ units }) => {
         </TabPanel>
         <TabPanel value="2">
           {ordersRaw && (
-            <OrderTable
+            <DoneOrderTable
               data={ordersRaw}
               lang={lang}
               userRole={userRole}

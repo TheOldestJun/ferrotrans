@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -41,6 +42,9 @@ const OrderDialog = ({
 }) => {
   const [amount, setAmount] = useState(parseFloat(defaultQuantity));
   const [price, setPrice] = useState(0.0);
+  const firstName = useSelector((state) => state.login.firstName);
+  const lastName = useSelector((state) => state.login.lastName);
+  const fullName = `${firstName} ${lastName}`;
   const handleSubmit = async (event) => {
     event.preventDefault();
     let newPrice;
@@ -72,7 +76,12 @@ const OrderDialog = ({
         amount: resultPrice,
         productId: productId,
       });
-      onConfirm({ id: id, ordered: true, orderAmount: newAmount });
+      onConfirm({
+        id: id,
+        ordered: true,
+        orderAmount: newAmount,
+        orderedBy: fullName,
+      });
     } catch (error) {
       alert(error.message);
     }

@@ -5,6 +5,7 @@ const supply = {
     back: "повернутись до списку",
     order: "Заявки",
     debit: "Списання",
+    dones: "Виконані",
   },
   ru: {
     total: "Всего",
@@ -12,6 +13,7 @@ const supply = {
     back: "вернуться к списку",
     order: "Заявки",
     debit: "Списания",
+    dones: "Выполненные",
   },
   en: {
     total: "Total: ",
@@ -19,6 +21,7 @@ const supply = {
     back: "back to list",
     order: "Orders",
     debit: "Debit",
+    dones: "Done",
   },
   pl: {
     total: "Całkowity",
@@ -26,6 +29,7 @@ const supply = {
     back: "powrót do listy",
     order: "Zamówienia",
     debit: "Spłata",
+    dones: "Wykonane",
   },
 };
 

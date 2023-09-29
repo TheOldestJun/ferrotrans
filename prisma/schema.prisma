@@ -87,6 +87,8 @@ model Order {
   createdAt DateTime @default(now()) @db.Date
   doneAt    String?
   orderedAt String?
+  orderedBy String?
+  doneBy String?
 }
 
 

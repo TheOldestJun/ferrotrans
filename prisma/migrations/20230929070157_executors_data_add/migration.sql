@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `Order` ADD COLUMN `doneBy` VARCHAR(191) NULL,
+    ADD COLUMN `orderedBy` VARCHAR(191) NULL;

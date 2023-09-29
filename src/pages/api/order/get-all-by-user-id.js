@@ -27,7 +27,9 @@ const getAllByUserId = async (req, res) => {
         amount: true,
         description: true,
         doneAmount: true,
+        doneBy: true,
         orderAmount: true,
+        orderedBy: true,
         ordered: true,
         done: true,
         pending: true,
@@ -49,10 +51,17 @@ const getAllByUserId = async (req, res) => {
             type: true,
           },
         },
+        applicant: {
+          select: {
+            firstName: true,
+            lastName: true,
+          },
+        },
       },
+
       orderBy: [
         {
-          createdAt: "asc",
+          createdAt: "desc",
         },
         {
           product: {

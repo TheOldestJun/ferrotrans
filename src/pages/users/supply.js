@@ -15,11 +15,12 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { getAllKitchen } from "../../services/product";
-import { getAppsNames } from "@/services/orders";
+import { getAppsNames, getAllOrders } from "@/services/orders";
 import supply from "@/localization/supply";
 import SupplyTable from "@/components/SupplyTable";
 import Oops from "@/components/Oops";
 import DebitTable from "@/components/DebitTable";
+import DoneOrderTable from "@/components/DoneOrderTable";
 import Info from "@/components/Info";
 
 const Supply = () => {
@@ -30,6 +31,8 @@ const Supply = () => {
   const [tab, setTab] = useState("1");
   const [applicantId, setApplicantId] = useState("");
   const [applicantRole, setApplicantRole] = useState("");
+  const [applicantName, setApplicantName] = useState("");
+
   const {
     data: appsNames,
     isLoading: appsLoading,
@@ -48,6 +51,11 @@ const Supply = () => {
     queryFn: getAllKitchen,
   });
 
+  const { data: doneOrders } = useQuery({
+    queryKey: ["doneOrders"],
+    queryFn: getAllOrders,
+  });
+
   if (!login) {
     return <Oops />;
   }
@@ -60,6 +68,7 @@ const Supply = () => {
             onClick={() => {
               setApplicantId(app.id);
               setApplicantRole(app.role.title);
+              setApplicantName(`${app.firstName} ${app.lastName}`);
               showOrdersTable(true);
             }}
           >
@@ -97,14 +106,24 @@ const Supply = () => {
           >
             <Tab label={supply[lang].order} value="1" />
             <Tab label={supply[lang].debit} value="2" />
+            <Tab label={supply[lang].dones} value="3" />
           </TabList>
         </Box>
         <TabPanel value="1">
           {orderTable ? (
             <>
+              <Typography
+                variant="h4"
+                align="center"
+                color="primary.dark"
+                sx={{ mb: 2 }}
+              >
+                {applicantName}
+              </Typography>
               <Stack spacing={4}>
                 <Button
                   size="large"
+                  variant="outlined"
                   onClick={() => {
                     showOrdersTable(false);
                   }}
@@ -126,6 +145,9 @@ const Supply = () => {
         </TabPanel>
         <TabPanel value="2">
           <DebitTable data={products} lang={lang} />
+        </TabPanel>
+        <TabPanel value="3">
+          <DoneOrderTable data={doneOrders} lang={lang} userRole={userRole} />
         </TabPanel>
       </TabContext>
     </Container>

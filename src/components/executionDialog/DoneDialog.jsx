@@ -10,8 +10,7 @@ import {
 } from "@mui/material";
 
 import { useState } from "react";
-
-import axios from "axios";
+import { useSelector } from "react-redux";
 
 import toast from "react-hot-toast";
 
@@ -41,6 +40,9 @@ const DoneDialog = ({
   error,
 }) => {
   const [amount, setAmount] = useState(orderAmount);
+  const firstName = useSelector((state) => state.login.firstName);
+  const lastName = useSelector((state) => state.login.lastName);
+  const fullName = `${firstName} ${lastName}`;
   const handleSubmit = async (event) => {
     event.preventDefault();
     let newAmount;
@@ -59,6 +61,7 @@ const DoneDialog = ({
       productType: productType,
       productId: productId,
       amount: newAmount,
+      doneBy: fullName,
     });
     onCancel();
   };

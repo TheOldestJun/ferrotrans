@@ -1,4 +1,5 @@
 import prisma from "../../../../prisma";
+import { Type } from "@prisma/client";
 const getAll = async (req, res) => {
   if (req.method !== "GET") {
     res.status(405).json({ error: "Method not allowed" });
@@ -6,13 +7,20 @@ const getAll = async (req, res) => {
   }
   try {
     const result = await prisma.order.findMany({
+      where: {
+        product: {
+          type: Type.OTHER,
+        },
+      },
       select: {
         id: true,
         title: true,
         amount: true,
         description: true,
         doneAmount: true,
+        doneBy: true,
         orderAmount: true,
+        orderedBy: true,
         ordered: true,
         done: true,
         doneAt: true,
@@ -33,10 +41,17 @@ const getAll = async (req, res) => {
             type: true,
           },
         },
+        applicant: {
+          select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+          },
+        },
       },
       orderBy: [
         {
-          createdAt: "asc",
+          createdAt: "desc",
         },
         {
           product: {
@@ -49,7 +64,6 @@ const getAll = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-  return;
 };
 
 export default getAll;

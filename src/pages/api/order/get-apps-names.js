@@ -4,6 +4,9 @@ const getAppsNames = async (req, res) => {
   try {
     const applicants = await prisma.order.groupBy({
       by: ["applicantId"],
+      where: {
+        done: false,
+      },
       _count: {
         productId: true,
       },
