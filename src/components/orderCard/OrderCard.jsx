@@ -23,6 +23,7 @@ const OrderCard = ({
   onEditAmount,
   onEditOrdered,
   onEditDone,
+  onAccept,
 }) => {
   return (
     <Card
@@ -65,6 +66,7 @@ const OrderCard = ({
         units={units}
         product={product}
         quantity={amount}
+        onAccept={onAccept}
       />
     </Card>
   );

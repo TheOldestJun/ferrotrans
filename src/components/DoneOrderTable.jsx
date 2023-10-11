@@ -7,7 +7,7 @@ import { useMutation, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
 import toastLocals from "@/localization/toast";
 
-const DoneOrderTable = ({ data, lang, userRole, userId }) => {
+const DoneOrderTable = ({ data, lang, userId }) => {
   const queryClient = useQueryClient();
   const { mutate: removeOrder } = useMutation({
     mutationFn: (id) => deleteOder(id),
@@ -39,7 +39,9 @@ const DoneOrderTable = ({ data, lang, userRole, userId }) => {
             doneAmount={order.doneAmount}
             orderBy={order.orderedBy}
             doneBy={order.doneBy}
+            acceptedBy={order.acceptedBy}
             onDelete={removeOrder}
+            units={order.units[lang]}
           />
         </Grid>
       );

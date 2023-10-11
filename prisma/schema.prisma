@@ -89,6 +89,7 @@ model Order {
   orderedAt String?
   orderedBy String?
   doneBy String?
+  acceptedBy String?
 }
 
 

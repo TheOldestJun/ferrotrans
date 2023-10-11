@@ -35,6 +35,7 @@ const getAllByUserId = async (req, res) => {
         pending: true,
         doneAt: true,
         orderedAt: true,
+        acceptedBy: true,
         units: {
           select: {
             title: true,

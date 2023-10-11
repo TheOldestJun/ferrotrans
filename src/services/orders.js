@@ -110,3 +110,15 @@ export const updateOrderDone = async (
     throw new Error(error.message);
   }
 };
+
+export const updateAccepted = async (id, acceptedBy) => {
+  try {
+    const result = await axios.put(`/api/order/edit-accept/`, {
+      id,
+      acceptedBy,
+    });
+    return result.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};

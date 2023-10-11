@@ -21,6 +21,7 @@ const getAll = async (req, res) => {
         doneBy: true,
         orderAmount: true,
         orderedBy: true,
+        acceptedBy: true,
         ordered: true,
         done: true,
         doneAt: true,

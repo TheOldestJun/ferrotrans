@@ -1,11 +1,12 @@
 import OrderCard from "./orderCard/OrderCard";
-import { Container, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { formatDate } from "@/utilities/helpers";
 import {
   deleteOder,
   updateOrderAmount,
   updateOrderDone,
   updateOrderOrdered,
+  updateAccepted,
 } from "@/services/orders";
 
 import { useMutation, useQueryClient } from "react-query";
@@ -43,6 +44,17 @@ const OrderTable = ({ data, lang, userRole, userId }) => {
     onSuccess: () => {
       queryClient.invalidateQueries(["orders", userId]);
       toast.success(toastLocals[lang].updateOrdered);
+    },
+    onError: () => {
+      toast.error(toastLocals[lang].error);
+    },
+  });
+
+  const { mutate: updateAccept } = useMutation({
+    mutationFn: ({ id, acceptedBy }) => updateAccepted(id, acceptedBy),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["orders", userId]);
+      toast.success(toastLocals[lang].updateDone);
     },
     onError: () => {
       toast.error(toastLocals[lang].error);
@@ -87,6 +99,7 @@ const OrderTable = ({ data, lang, userRole, userId }) => {
             onEditAmount={updateAmount}
             onEditOrdered={updateOrdered}
             onEditDone={updateDone}
+            onAccept={updateAccept}
           />
         </Grid>
       );

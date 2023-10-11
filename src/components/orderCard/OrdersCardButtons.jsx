@@ -19,6 +19,7 @@ const OrderCardButtons = ({
   units,
   product,
   quantity,
+  onAccept,
 }) => {
   return (
     <Box
@@ -50,6 +51,7 @@ const OrderCardButtons = ({
         units={units}
         product={product}
         quantity={quantity}
+        onAccept={onAccept}
       />
     </Box>
   );
