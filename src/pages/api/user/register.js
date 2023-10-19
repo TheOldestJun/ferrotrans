@@ -25,7 +25,6 @@ const Register = async (req, res) => {
         lastName,
         email,
         password: bcrypt.hashSync(password, 10),
-        avatarUrl: "/img/user.png",
         role: {
           connect: {
             id: roleId,

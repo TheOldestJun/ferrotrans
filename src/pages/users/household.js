@@ -4,9 +4,12 @@ import { getAllByUserId } from "@/services/orders";
 import ProductComboBox from "@/components/ProductComboBox";
 import OrderTable from "@/components/OrderTable";
 import DebitTable from "@/components/DebitTable";
+import SupplyTable from "@/components/SupplyTable";
 import prisma from "../../../prisma";
 import Info from "@/components/Info";
 import kitchen from "@/localization/kitchen";
+import supply from "@/localization/supply";
+import household from "@/localization/household";
 import {
   Box,
   Tab,
@@ -25,7 +28,7 @@ import { useState } from "react";
 import { Type } from "@prisma/client";
 import Oops from "@/components/Oops";
 
-const Kitchen = ({ units, prods }) => {
+const Household = ({ units, prods }) => {
   const login = useSelector((state) => state.login.login);
   const lang = useSelector((state) => state.lang.lang);
   const userId = useSelector((state) => state.login.userId);
@@ -39,11 +42,7 @@ const Kitchen = ({ units, prods }) => {
     queryKey: ["products"],
     queryFn: getAllKitchen,
   });
-  const {
-    data: ordersRaw,
-    isLoading: isLoadingOrders,
-    isError: isErrorOrders,
-  } = useQuery({
+  const { data: ordersRaw, isLoading: isLoadingOrders } = useQuery({
     queryKey: ["orders", userId],
     queryFn: () => getAllByUserId(userId),
   });
@@ -82,9 +81,11 @@ const Kitchen = ({ units, prods }) => {
             }}
           >
             <Tab label={kitchen[lang].createOrder} value="1" />
-            <Tab label={kitchen[lang].myOrders} value="2" />
-            <Tab label={kitchen[lang].allProducts} value="3" />
-            <Tab label={kitchen[lang].debit} value="4" />
+            <Tab label={household[lang].kitchenOrders} value="2" />
+            {/* <Tab label={household[lang].supplyOrders} value="3" /> */}
+
+            <Tab label={kitchen[lang].allProducts} value="4" />
+            <Tab label={kitchen[lang].debit} value="5" />
           </TabList>
         </Box>
         <TabPanel value="1">
@@ -106,16 +107,10 @@ const Kitchen = ({ units, prods }) => {
           )}
         </TabPanel>
         <TabPanel value="2">
-          {ordersRaw && (
-            <OrderTable
-              data={ordersRaw}
-              lang={lang}
-              userRole={userRole}
-              userId={userId}
-            />
-          )}
+          <SupplyTable lang={lang} userRole="supply" applicantId={userId} />
         </TabPanel>
-        <TabPanel value="3">
+        <TabPanel value="3">{/* TODO: Add Supply orders table */}</TabPanel>
+        <TabPanel value="4">
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
@@ -135,7 +130,7 @@ const Kitchen = ({ units, prods }) => {
             </Table>
           </TableContainer>
         </TabPanel>
-        <TabPanel value="4">
+        <TabPanel value="5">
           <DebitTable data={products} lang={lang} />
         </TabPanel>
       </TabContext>
@@ -143,7 +138,7 @@ const Kitchen = ({ units, prods }) => {
   );
 };
 
-export default Kitchen;
+export default Household;
 
 export const getServerSideProps = async () => {
   const units = await prisma.unit.findMany();

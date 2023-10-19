@@ -33,6 +33,7 @@ const main = {
     logout: "Выйти",
     yours: "Ваш",
     you: "Вами",
+    export: "Экспорт в Excel",
   },
   en: {
     version: "Version",
@@ -68,6 +69,7 @@ const main = {
     logout: "Logout",
     yours: "Yours",
     you: "By You",
+    export: "Export to Excel",
   },
   ua: {
     version: "Версія",
@@ -103,6 +105,7 @@ const main = {
     logout: "Вийти",
     yours: "Ваше",
     you: "Вами",
+    export: "Експорт до Excel",
   },
   pl: {
     version: "Wersja",
@@ -138,6 +141,7 @@ const main = {
     logout: "Wyloguj się",
     yours: "Twoje",
     you: "Twoja",
+    export: "Eksport do Excel",
   },
 };
 

@@ -92,4 +92,13 @@ model Order {
   acceptedBy String?
 }
 
+model Contractor {
+  id String @id @default(cuid())
+  title String
+  code String? // ЄДРПОУ чи ІНН
+  tel String?
+  city String?
+  vat Boolean @default(true) // ПДВ чи без ПДВ
+}
+
 

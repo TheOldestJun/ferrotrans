@@ -11,8 +11,6 @@ const Info = ({ message }) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          bgcolor: "#d2d6d3",
-          opacity: "0.2",
         }}
       >
         <CircularProgress />
